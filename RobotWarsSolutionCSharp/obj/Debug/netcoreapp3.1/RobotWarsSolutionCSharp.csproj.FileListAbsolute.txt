@@ -1,0 +1,14 @@
+C:\Users\tamilore.olufohunsi\source\repos\RobotWarsSolutionCSharp\bin\Debug\netcoreapp3.1\RobotWarsSolutionCSharp.exe
+C:\Users\tamilore.olufohunsi\source\repos\RobotWarsSolutionCSharp\bin\Debug\netcoreapp3.1\RobotWarsSolutionCSharp.deps.json
+C:\Users\tamilore.olufohunsi\source\repos\RobotWarsSolutionCSharp\bin\Debug\netcoreapp3.1\RobotWarsSolutionCSharp.runtimeconfig.json
+C:\Users\tamilore.olufohunsi\source\repos\RobotWarsSolutionCSharp\bin\Debug\netcoreapp3.1\RobotWarsSolutionCSharp.runtimeconfig.dev.json
+C:\Users\tamilore.olufohunsi\source\repos\RobotWarsSolutionCSharp\bin\Debug\netcoreapp3.1\RobotWarsSolutionCSharp.dll
+C:\Users\tamilore.olufohunsi\source\repos\RobotWarsSolutionCSharp\bin\Debug\netcoreapp3.1\RobotWarsSolutionCSharp.pdb
+C:\Users\tamilore.olufohunsi\source\repos\RobotWarsSolutionCSharp\obj\Debug\netcoreapp3.1\RobotWarsSolutionCSharp.csproj.AssemblyReference.cache
+C:\Users\tamilore.olufohunsi\source\repos\RobotWarsSolutionCSharp\obj\Debug\netcoreapp3.1\RobotWarsSolutionCSharp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\tamilore.olufohunsi\source\repos\RobotWarsSolutionCSharp\obj\Debug\netcoreapp3.1\RobotWarsSolutionCSharp.AssemblyInfoInputs.cache
+C:\Users\tamilore.olufohunsi\source\repos\RobotWarsSolutionCSharp\obj\Debug\netcoreapp3.1\RobotWarsSolutionCSharp.AssemblyInfo.cs
+C:\Users\tamilore.olufohunsi\source\repos\RobotWarsSolutionCSharp\obj\Debug\netcoreapp3.1\RobotWarsSolutionCSharp.csproj.CoreCompileInputs.cache
+C:\Users\tamilore.olufohunsi\source\repos\RobotWarsSolutionCSharp\obj\Debug\netcoreapp3.1\RobotWarsSolutionCSharp.dll
+C:\Users\tamilore.olufohunsi\source\repos\RobotWarsSolutionCSharp\obj\Debug\netcoreapp3.1\RobotWarsSolutionCSharp.pdb
+C:\Users\tamilore.olufohunsi\source\repos\RobotWarsSolutionCSharp\obj\Debug\netcoreapp3.1\RobotWarsSolutionCSharp.genruntimeconfig.cache
