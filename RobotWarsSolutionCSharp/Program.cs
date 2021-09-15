@@ -18,25 +18,17 @@ namespace RobotWarsSolutionCSharp
             int xMax;
             int yMax;
             Console.Write("Length(m): ");
-            if(int.TryParse(Console.ReadLine(), out xMax))
-            {
-                
-            }
-            else
+            if(!int.TryParse(Console.ReadLine(), out xMax)) //Maximum x coordinate of rectangular ring
             {
                 Console.WriteLine("Not a valid value for Length");
                 Environment.Exit(0);
-            } //Maximum x coordinate of rectangular ring
+            } 
             Console.Write("Breadth(m): ");
-            if (int.TryParse(Console.ReadLine(), out yMax))
-            {
-
-            }
-            else
+            if (!int.TryParse(Console.ReadLine(), out yMax)) //Maximum y coordinate of rectangular ring
             {
                 Console.WriteLine("Not a valid value for Breadth");
                 Environment.Exit(0);
-            } //Maximum y coordinate of rectangular ring
+            } 
 
             Console.WriteLine($"\nGreat, Here's the top view of your {xMax} by {yMax} arena in the form of coordinates(starting from 0)\n\n");
 
@@ -47,25 +39,18 @@ namespace RobotWarsSolutionCSharp
             Console.Write("X-coordinates: ");//Current x coordinate of robot
             int x;
             int y;
-             if (int.TryParse(Console.ReadLine(), out x) && x >= 0 && x <= xMax)
-            {
-
-            }
-            else
+             if (!(int.TryParse(Console.ReadLine(), out x) && x >= 0 && x <= xMax))
             {
                 Console.WriteLine("Invalid position for x-coordinate");
-                Environment.Exit(0);
             }
-            Console.Write("Y-coordinates: ");//Current y coordinate of robot
-             if (int.TryParse(Console.ReadLine(), out y) && y >= 0 && y <= yMax)
-            {
 
-            }
-            else
+            Console.Write("Y-coordinates: ");//Current y coordinate of robot
+             if (!int.TryParse(Console.ReadLine(), out y) || y < 0 || y > yMax)
             {
-                Console.WriteLine("Invalid position for w coordinate");
+                Console.WriteLine("Invalid position for y coordinate");
                 Environment.Exit(0);
             }
+     
             Console.Write("And finally, a direction(which can only be \"N\", \"E\", \"W\" or \"S\"): ");
             char cardinal;
             if (Char.TryParse(Console.ReadLine(), out cardinal) )
@@ -76,9 +61,7 @@ namespace RobotWarsSolutionCSharp
                     Console.WriteLine($"\nInvalid cardinal {cardinal} letter detected");
                     Environment.Exit(0);
                 }
-            }
-            
-            
+            }  
 
             Console.WriteLine($"\nPerfect!, your robot is currently at the position ({x}, {y}) facing the direction {cardinal}");
             printRobotCurrentPosition(x, y, cardinal);
