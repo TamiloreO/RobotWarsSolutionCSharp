@@ -15,23 +15,70 @@ namespace RobotWarsSolutionCSharp
             Console.WriteLine("Let's get ready to rumbleeeeee!\n");
             Console.WriteLine("First of all, let's set up the amount of space you want your robofight arena. ");
             Console.WriteLine("Please provide me with the dimensions of your stage");
+            int xMax;
+            int yMax;
             Console.Write("Length(m): ");
-            int xMax = Int32.Parse(Console.ReadLine()); //Maximum x coordinate of rectangular ring
+            if(int.TryParse(Console.ReadLine(), out xMax))
+            {
+                
+            }
+            else
+            {
+                Console.WriteLine("Not a valid value for Length");
+                Environment.Exit(0);
+            } //Maximum x coordinate of rectangular ring
             Console.Write("Breadth(m): ");
-            int yMax = Int32.Parse(Console.ReadLine()); //Maximum y coordinate of rectangular ring
+            if (int.TryParse(Console.ReadLine(), out yMax))
+            {
 
-            Console.WriteLine($"\nGreat, Here's the top view of your {xMax} by {yMax} arena in the form of coordinates\n\n");
+            }
+            else
+            {
+                Console.WriteLine("Not a valid value for Breadth");
+                Environment.Exit(0);
+            } //Maximum y coordinate of rectangular ring
+
+            Console.WriteLine($"\nGreat, Here's the top view of your {xMax} by {yMax} arena in the form of coordinates(starting from 0)\n\n");
 
             makeArena(xMax, yMax);
 
-            Console.WriteLine("\n\nGreat Layout!. Now Let's do some tests on your robot champion and see if it is responsive to commands!. Similar to the top view of the arena setting above, give your robot a starting position and direction to face. Note that it must also fall within the dimensions of the arena\n");
+            printCompass();
+            Console.WriteLine("\n\nGreat Layout!. Now Let's do some tests on your robot champion and see if it is responsive to commands!. Similar to the aerial view of the arena setting seen above, give your robot a starting position and direction to face. Note that it must also fall within the dimensions of the arena\n");
             Console.Write("X-coordinates: ");//Current x coordinate of robot
-            int x = Int32.Parse(Console.ReadLine());
+            int x;
+            int y;
+             if (int.TryParse(Console.ReadLine(), out x) && x >= 0 && x <= xMax)
+            {
+
+            }
+            else
+            {
+                Console.WriteLine("Invalid position for x-coordinate");
+                Environment.Exit(0);
+            }
             Console.Write("Y-coordinates: ");//Current y coordinate of robot
-            int y = Int32.Parse(Console.ReadLine());
+             if (int.TryParse(Console.ReadLine(), out y) && y >= 0 && y <= yMax)
+            {
+
+            }
+            else
+            {
+                Console.WriteLine("Invalid position for w coordinate");
+                Environment.Exit(0);
+            }
             Console.Write("And finally, a direction(which can only be \"N\", \"E\", \"W\" or \"S\"): ");
-            string cardinal = Console.ReadLine();
-            cardinal = cardinal.ToUpper();
+            char cardinal;
+            if (Char.TryParse(Console.ReadLine(), out cardinal) )
+            {
+                cardinal = Char.ToUpper(cardinal);
+                if (cardinal != 'N' && cardinal != 'E' && cardinal != 'W' && cardinal != 'S')
+                {
+                    Console.WriteLine($"\nInvalid cardinal {cardinal} letter detected");
+                    Environment.Exit(0);
+                }
+            }
+            
+            
 
             Console.WriteLine($"\nPerfect!, your robot is currently at the position ({x}, {y}) facing the direction {cardinal}");
             printRobotCurrentPosition(x, y, cardinal);
@@ -46,70 +93,96 @@ namespace RobotWarsSolutionCSharp
             for (int i = 0; i < robotDirections.Length; i++)
             {
                 char c = splitDirections[i];
-                if (x+ 1 <= xMax && y+ 1 <= yMax && x >= 0 && y >= 0) //they do not go out of the dimensions
+
+
+                //printRobotCurrentPosition(x, y, cardinal);//Can be uncommented to check every single step made by the robot
+                //Console.WriteLine($"Direction given: {c}");// Can be uncommented too. Purely for debugging
+                if (c == 'L')
                 {
-
-                    //printRobotCurrentPosition(x, y, cardinal);//Can be uncommented to check every single step made by the robot
-                    if (c == 'L')
+                    switch (cardinal)
                     {
-                        switch (cardinal)
-                        {
-                            case "N":
-                                cardinal = "W";
-                                break;
-                            case "E":
-                                cardinal = "N";
-                                break;
-                            case "W":
-                                cardinal = "S";
-                                break;
-                            case "S":
-                                cardinal = "E";
-                                break;
-                        }
+                        case 'N':
+                            cardinal = 'W';
+                            break;
+                        case 'E':
+                            cardinal = 'N';
+                            break;
+                        case 'W':
+                            cardinal = 'S';
+                            break;
+                        case 'S':
+                            cardinal = 'E';
+                            break;
                     }
-                    else if (c == 'R')
+                }
+                else if (c == 'R')
+                {
+                    switch (cardinal)
                     {
-                        switch (cardinal)
-                        {
-                            case "N":
-                                cardinal = "E";
-                                break;
-                            case "E":
-                                cardinal = "S";
-                                break;
-                            case "W":
-                                cardinal = "N";
-                                break;
-                            case "S":
-                                cardinal = "W";
-                                break;
-                        }
-
+                        case 'N':
+                            cardinal = 'E';
+                            break;
+                        case 'E':
+                            cardinal = 'S';
+                            break;
+                        case 'W':
+                            cardinal = 'N';
+                            break;
+                        case 'S':
+                            cardinal = 'W';
+                            break;
                     }
-                    else if (c == 'M')
+
+                }
+                else if (c == 'M')
+                {
+                    switch (cardinal)
                     {
-                        switch (cardinal)
-                        {
-                            case "N":
+                        case 'N':
+                            if (x < xMax && x >= 0)// so x can increment even if the value is at 0, but stops incrementing when - 1 is reached
+                            {
                                 x++;
-                                break;
-                            case "E":
-                                y++;
-                                break;
-                            case "W":
-                                y--;
-                                break;
-                            case "S":
+                            }
+                            else
+                            {
+                                Console.WriteLine("*HITS WALL* Your robot can not leave the arena without using the door ^_^ !");
+                            }
+                            break;
+                        case 'S':
+                            if (x <= xMax && x > 0) //so x can decrease even when xMax has been reached but cannot decrease further when 0 has been reached
+                            {
                                 x--;
-                                break;
-                        }
+                            }
+                            else
+                            {
+                                Console.WriteLine("*HITS WALL* Your robot can not leave the arena without using the door ^_^ !");
+                            }
+                            break;
+                        case 'E':
+                            if (y < yMax && y >= 0) // so y can increment even if the value is at 0, but stops incrementing when - 1 is reached
+                            {
+                                y++;
+                            }
+                            else
+                            {
+                                Console.WriteLine("*HITS WALL* Your robot can not leave the arena without using the door ^_^ !");
+                            }
+                            break;
+                        case 'W':
+                            if (y <= yMax && y > 0) //so x can decrease even when xMax has been reached but cannot decrease further when 0 has been reached
+                            {
+                                y--;
+                            }
+                            else
+                            {
+                                Console.WriteLine("*HITS WALL* Your robot can not leave the arena without using the door ^_^ !");
+                            }
+                            break;
+
                     }
+
                 }
-                else
-                {
-                    Console.WriteLine("Your robot can not leave the arena without using the door ^_^ !");
-                }
+
 
             }
 
@@ -155,9 +228,26 @@ namespace RobotWarsSolutionCSharp
             
         }
 
-        static void printRobotCurrentPosition(int x, int y, string cardinal)
+        static void printRobotCurrentPosition(int x, int y, char cardinal)
         {
             Console.WriteLine($"Robot's current position: ({x}, {y}){cardinal}");
+        }
+
+        static void printCompass()
+        {
+            Console.WriteLine("\n\n|    )     N     (     |");
+            Console.WriteLine("|    (     |     )     |");
+            Console.WriteLine("|    )   ) | (   (     |");
+            Console.WriteLine("|    (   ) | (   )     |");
+            Console.WriteLine("|    )   ) | (   (     |");
+            Console.WriteLine("|    )     |     (     |");
+            Console.WriteLine("|W---)-----O-----(---E |");
+            Console.WriteLine("|    )     |     (     |");
+            Console.WriteLine("|    )   ) | (   (     |");
+            Console.WriteLine("|    (   ) | (   )     |");
+            Console.WriteLine("|    )   ) | (   (     |");
+            Console.WriteLine("|    (     |     )     |");
+            Console.WriteLine("|    )     S     (     |                   : Cardinal Directions");
         }
     }
 }
